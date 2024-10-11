@@ -1,11 +1,16 @@
 <?php
 
 use App\Http\Controllers\BarangController;
-use App\Models\Barang;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\keranjangController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('barang', BarangController::class);
+Route::resource( 'barang', BarangController::class);
+Route::resource( 'pelanggan', PelangganController::class);
+Route::resource('penjualan', PenjualanController::class);
+Route::resource('keranjang',  KeranjangController::class);
