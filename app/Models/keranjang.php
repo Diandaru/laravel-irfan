@@ -8,6 +8,17 @@ class keranjang extends Model
 {
     use HasFactory;
 
-    protected $table = 'keranjang'; // If your table name doesn't follow Laravel's naming conventions
-    protected $fillable = ['id_barang', 'jumlah_barang', 'harga', 'subtotal'];
+    protected $table = 'keranjang';
+
+    protected $fillable = [
+        'id_barang',
+        'jumlah_barang',
+        'harga',
+        'subtotal',
+    ];
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'id_barang');
+    }
 }

@@ -24,14 +24,10 @@ class keranjangController extends Controller
         return redirect()->route('keranjang.index')->with('success', 'keranjang berhasil dihapus.');
     }
 
-    // Controller Method
 public function showTransaksiPenjualan()
 {
-    // Retrieve all items from the barang table
-    $barangs = Barang::all(); // Make sure to replace 'Barang' with your actual model name
-
-    // Pass the barangs variable to the view
-    return view('keranjang', compact( 'barang')); // Replace 'your_view_name' with the actual view name
+    $barangs = Barang::all(); 
+    return view('keranjang', compact( 'barang'));
 }
 
 

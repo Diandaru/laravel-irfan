@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Barang</th>
+                    <th>Nama Barang</th>
                     <th>Jumlah Barang</th>
                     <th>Harga</th>
                     <th>Subtotal</th>
@@ -49,7 +49,7 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ number_format($item->jumlah_barang, 0, ',', '.') }}</td>
-                        <td>{{ number_format($item->harga, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                         <td>{{ number_format($item->subtotal, 0, ',', '.') }}</td>
                         <td class="text-center">
                             <!-- Delete Button -->
@@ -88,18 +88,18 @@
                                                     </div>
                                                     <div class="col-8">
                                                         <h5 class="card-title">{{ $b->nama_barang }}</h5>
-                                                        <p class="card-text">Rp: {{ number_format($b->harga, 0, ',', '.') }}</p>
-                                                        <p class="card-text">Stok : {{ $b->stok }}</p>
+                                                        <p class="card-text">Rp. {{ number_format($b->harga_barang, 0, ',', '.') }}</p>
+                                                        <p class="card-text">Stok : {{ $b->stok_barang }}</p>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="input-group">
                                                             <form action="{{ route('keranjang.store') }}" method="POST">
                                                                 @csrf
-                                                                <input type="hidden" name="id_barang" value="{{ $b->id }}">
-                                                                <input type="hidden" name="harga" value="{{ $b->harga }}">
-                                                                <input type="number" name="jumlah_barang" class="form-control" placeholder="Jumlah" min="1" max="{{ $b->stok }}" required>
+                                                                <input type="hidden" name="barang_id" value="{{ $b->id }}">
+                                                                <input type="hidden" name="harga" value="{{ $b->harga_barang }}">
+                                                                <input type="number" name="jumlah_barang" class="form-control" placeholder="Jumlah" min="1" max="{{ $b->stok_barang }}" required>
                                                                 <button class="btn btn-primary m-1" type="submit">Tambah</button>
-                                                            </form>
+                                                            </form>                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -114,5 +114,8 @@
             </div>
         </div>
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
 
 </html>
