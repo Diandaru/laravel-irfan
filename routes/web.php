@@ -14,3 +14,4 @@ Route::resource( 'barang', BarangController::class);
 Route::resource( 'pelanggan', PelangganController::class);
 Route::resource('penjualan', PenjualanController::class);
 Route::resource('keranjang',  KeranjangController::class);
+

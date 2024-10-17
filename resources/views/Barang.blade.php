@@ -60,7 +60,7 @@
 </style>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5 col-8">
         <h2 class="mb-4 text-center">Daftar barang</h2>
 
         <!-- Button to open the Add barang modal -->
@@ -79,15 +79,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="nama_barang" class="form-label">Nama barang</label>
                                 <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="harga_barang" class="form-label">Harga barang</label>
                                 <input type="text" class="form-control" id="harga_barang" name="harga_barang" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="stok_barang" class="form-label">Stok</label>
                                 <input type="text" class="form-control" id="stok_barang" name="stok_barang" required>
                             </div>
@@ -148,15 +148,15 @@
                                         <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="edit_nama_barang" class="form-label">Nama barang</label>
                                             <input type="text" class="form-control" id="edit_nama_barang" name="nama_barang" value="{{ $item->nama_barang }}" required>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="edit_harga_barang" class="form-label">harga barang</label>
                                             <input type="text" class="form-control" id="harga_barang" name="harga_barang" value="{{ $item->harga_barang }}" required>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="stok_barang" class="form-label">stok</label>
                                             <input type="text" class="form-control" id="stok_barang" name="stok_barang" value="{{ $item->stok_barang }}" required>
                                         </div>

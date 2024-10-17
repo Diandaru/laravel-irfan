@@ -9,22 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('barangs', function (Blueprint $table) {
+        Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
-            $table->string('harga_barang');
-            $table->string('stok_barang');
+            $table->decimal('harga_barang', 10, 2);
+            $table->integer('stok_barang');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('barang');
     }
 };

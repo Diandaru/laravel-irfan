@@ -15,37 +15,46 @@ class PelangganController extends Controller
     
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'nama_pelanggan' => 'required|string|max:255',
             'alamat_pelanggan' => 'required|string|max:255',
-            'no_telp_pelanggan' => 'required|string|max:15', // Adjust max length as needed
+            'no_telp_pelanggan' => 'required|string|max:15',
         ]);
-
+    
+        // Check if the phone number already exists
+        if (Pelanggan::where('no_telp_pelanggan', $request->no_telp_pelanggan)->exists()) {
+            return redirect()->route('pelanggan.index')->with('duplicate_phone', true);
+        }
+    
         // Create a new customer
         Pelanggan::create($request->all());
-
-        // Redirect back with a success message
+    
         return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan.');
     }
-
+    
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'nama_pelanggan' => 'required',
-        'alamat_pelanggan' => 'required',
-        'no_telp_pelanggan' => 'required',
-    ]);
-
-    $pelanggan = Pelanggan::findOrFail($id);
-    $pelanggan->update([
-        'nama_pelanggan' => $request->nama_pelanggan,
-        'alamat_pelanggan' => $request->alamat_pelanggan,
-        'no_telp_pelanggan' => $request->no_telp_pelanggan,
-    ]);
-
-    return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil diperbarui');
-}
+    {
+        $request->validate([
+            'nama_pelanggan' => 'required|string|max:255',
+            'alamat_pelanggan' => 'required|string|max:255',
+            'no_telp_pelanggan' => 'required|string|max:15',
+        ]);
+    
+        $pelanggan = Pelanggan::findOrFail($id);
+    
+        // Check if the new phone number already exists for other customers
+        if (Pelanggan::where('no_telp_pelanggan', $request->no_telp_pelanggan)
+            ->where('id', '!=', $id)
+            ->exists()) {
+            return redirect()->route('pelanggan.index')->with('duplicate_phone', true);
+        }
+    
+        // Update the customer
+        $pelanggan->update($request->all());
+    
+        return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil diperbarui');
+    }
+    
 
 
     public function destroy(string $id)

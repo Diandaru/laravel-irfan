@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,11 +8,17 @@ class Barang extends Model
 {
     use HasFactory;
 
-    protected $table =  'barangs';
-
+    protected $table = 'barang'; // Ensure the correct table name is specified    
+    
     protected $fillable = [
         'nama_barang',
         'harga_barang',
-        'stok_barang'
+        'stok_barang',
+        'image_url',
     ];
+
+    public function keranjang()
+    {
+        return $this->hasMany(keranjang::class, 'id_barang');
+    }
 }

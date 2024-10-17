@@ -79,15 +79,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
                                 <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="alamat_pelanggan" class="form-label">Alamat Pelanggan</label>
                                 <input type="text" class="form-control" id="alamat_pelanggan" name="alamat_pelanggan" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 p-2">
                                 <label for="no_telp_pelanggan" class="form-label">No Telepon</label>
                                 <input type="text" class="form-control" id="no_telp_pelanggan" name="no_telp_pelanggan" required>
                             </div>
@@ -148,15 +148,15 @@
                                         <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="edit_nama_pelanggan" class="form-label">Nama Pelanggan</label>
                                             <input type="text" class="form-control" id="edit_nama_pelanggan" name="nama_pelanggan" value="{{ $item->nama_pelanggan }}" required>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="edit_alamat_pelanggan" class="form-label">Alamat Pelanggan</label>
                                             <input type="text" class="form-control" id="edit_alamat_pelanggan" name="alamat_pelanggan" value="{{ $item->alamat_pelanggan }}" required>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 p-2">
                                             <label for="edit_no_telp_pelanggan" class="form-label">No Telepon</label>
                                             <input type="text" class="form-control" id="edit_no_telp_pelanggan" name="no_telp_pelanggan" value="{{ $item->no_telp_pelanggan }}" required>
                                         </div>
@@ -207,4 +207,34 @@
             @endif
         });
     </script>
+
+    <!-- Modal untuk Duplicate Phone -->
+<div class="modal fade" id="duplicatePhoneModal" tabindex="-1" aria-labelledby="duplicatePhoneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="duplicatePhoneModalLabel">Peringatan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Nomor telepon yang Anda masukkan sudah terdaftar. Silakan gunakan nomor yang lain.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if (session('duplicate_phone'))
+            var duplicatePhoneModal = new bootstrap.Modal(document.getElementById('duplicatePhoneModal'));
+            duplicatePhoneModal.show();
+        @endif
+    });
+</script>
+
 </body>

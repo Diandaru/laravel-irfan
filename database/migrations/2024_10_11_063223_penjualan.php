@@ -10,8 +10,7 @@ return new class extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pelanggan');
-            $table->string('alamat_pelanggan');
-            $table->string('no_telp_pelanggan');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

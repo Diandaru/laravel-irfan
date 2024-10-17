@@ -24,7 +24,6 @@ class BarangController extends Controller
         barang::create($request->all());
 
         return redirect()->route('barang.index')->with('succes', 'barang berhasil di tambahkan');
-
     }
 
     public function update(Request $request, string $id)

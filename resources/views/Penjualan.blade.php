@@ -28,23 +28,20 @@
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>
-                        <th class="text-center">Nama Penjual</th>
+                        <th class="text-center">Nama Pelanggan</th>
                         <th class="text-center">Tanggal</th>
-                        <th class="text-center">No Telp</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pelanggan as $key => $item)
+                    @foreach ($penjualan as $key => $item)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ $item->nama_pelanggan }}</td>
-                            <td class="text-center">{{ $item->alamat_pelanggan }}</td>
-                            <td class="text-center">{{ $item->no_telp_pelanggan }}</td>
+                                <td class="text-center">{{ $item->tanggal }}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editPelangganModal{{ $item->id }}">Detail Penjualan</button>
-                                <form action="{{ route('pelanggan.destroy', $item->id) }}" method="POST"
-                                    style="display:inline;">
+                                <form action="{{ route('penjualan.destroy', $item->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"

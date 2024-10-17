@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->string('nama_pelanggan');
         $table->string('alamat_pelanggan');
-        $table->string('no_telp_pelanggan');
+        $table->string('no_telp_pelanggan')->unique();
         $table->timestamps();
     });
     
