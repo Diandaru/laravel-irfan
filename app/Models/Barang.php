@@ -21,4 +21,11 @@ class Barang extends Model
     {
         return $this->hasMany(keranjang::class, 'id_barang');
     }
+
+    // Di model Barang
+public function penjualan()
+{
+    return $this->belongsTo(Penjualan::class); // Pastikan mengganti dengan nama model yang benar
+}
+
 }

@@ -6,29 +6,30 @@ use Illuminate\Http\Request;
 use App\Models\keranjang;
 use App\Models\barang;
 use App\models\pelanggan;
-use App\Models\detail_penjualan;
-use App\Models\Penjualan;
 use Illuminate\Support\Facades\DB;
 
 class keranjangController extends Controller
 {
     public function index()
     {
-        // Fetch all items in the keranjang and related barang data
+        // Modify the join to use the correct column from penjualan to pelanggan
         $keranjang = DB::table('keranjang')
-            ->join('barang', 'keranjang.id_barang', '=', 'barang.id')
+            ->join('barang', 'keranjang.id_barang',  'barang.id')
             ->select('keranjang.*', 'barang.nama_barang')
             ->get();
+
 
         // Fetch total sum of subtotal
         $total = DB::table('keranjang')->sum('subtotal');
 
-        $pelanggan = pelanggan::all();
-        $barang = barang::all();
+        $pelanggan = Pelanggan::all();
+        $barang = Barang::all();
 
-        // Pass the total value to the view
+        // Pass the data to the view
         return view('keranjang', compact('keranjang', 'pelanggan', 'barang', 'total'));
     }
+
+
 
 
     public function destroy($id)
@@ -38,22 +39,22 @@ class keranjangController extends Controller
         $keranjang->delete();
 
         // Redirect atau kembali dengan pesan sukses
-        return redirect()->route('penjualan.index')->with('success', 'Item berhasil dihapus.');
+        return redirect()->route('keranjang.index')->with('success', 'Item berhasil dihapus.');
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'id_barang' => 'required|exists:barangs,id', // Validasi ID barang
+            'id_barang' => 'required|exists:barang,id', // Validasi ID barang
             'jumlah_barang' => 'required|integer|min:1', // Validasi jumlah barang
         ]);
-    
+
         $barang = Barang::findOrFail($request->id_barang);
-        
+
         // Check if the item already exists in the cart
         $itemKeranjang = keranjang::where('id_barang', $barang->id)->first();
-    
+
         if ($itemKeranjang) {
             // Update existing item
             $itemKeranjang->jumlah_barang += $request->jumlah_barang;
@@ -68,9 +69,9 @@ class keranjangController extends Controller
                 'subtotal' => $barang->harga_barang * $request->jumlah_barang,
             ]);
         }
-    
+
         // Return a JSON response
-        return response()->json(['success' => true, 'message' => 'Barang berhasil ditambahkan ke keranjang.']);
+        return redirect()->route('keranjang.index')->with('success', ' ditambahkan ke keranjang.');
     }
 
 
@@ -104,8 +105,7 @@ class keranjangController extends Controller
         }
 
         // Kembalikan respons sukses
-        return redirect()->route('keranjang.index') // Ganti dengan route yang sesuai
-        ->with('success', 'Barang berhasil ditambahkan ke keranjang.');
+        return redirect()->route('keranjang.index')->with('success', ' ditambahkan ke keranjang.');
         // return response()->json(['success' => true]);
     }
 }

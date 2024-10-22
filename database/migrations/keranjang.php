@@ -15,8 +15,8 @@ return new class extends Migration{
         $table->id();
         $table->string('id_barang');
         $table->integer('harga');
-        $table->integer('jumlah_barang');
-        $table->integer(column: 'subtotal');
+        $table->integer( 'jumlah_barang');
+        $table->integer( 'subtotal');
         $table->integer('id_penjualan');
         $table->timestamps();
         });

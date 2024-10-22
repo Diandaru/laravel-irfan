@@ -15,7 +15,6 @@
         }
 
         .sidebar {
-            height: 100vh;
             width: 250px;
             background-color: #343a40;
             color: white;
@@ -66,7 +65,7 @@
 <body>
 
     <div class="sidebar">
-        <h2>Sidebar</h2>
+        <h1>Sidebar</h1>
         <ul class="list-unstyled">
             <li><a href="{{ route('barang.index') }}"><i class="fas fa-box"></i> Barang</a></li>
             <li><a href="{{ route('pelanggan.index') }}"><i class="fas fa-users"></i> Pelanggan</a></li>

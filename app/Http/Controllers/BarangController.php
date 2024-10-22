@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Barang;  
+use App\Models\Barang;
 
 class BarangController extends Controller
 {
-    
+
     public function index()
     {
         $barang = Barang::all();
@@ -38,15 +38,14 @@ class BarangController extends Controller
         $barang->update($request->all());
 
         return redirect()->route('barang.index')->with('success', 'barang berhasil diperbarui.');
-
     }
 
-     
+
     public function destroy(string $id)
     {
         $barang = barang::find($id);
         $barang->delete();
 
-        return redirect()->route('barang.index')->with('success', 'barang berhasil dihapus.');
+        return redirect()->route('barang.index')->with('success', ' dihapus.');
     }
 }
